@@ -8,7 +8,8 @@ describe("GitHub Pages site", () => {
   it("contains the public product story and fixed release links", () => {
     expect(html).toContain("拍得多，也能选得快");
     expect(html).toContain("https://github.com/DongZhouGu/KakaPick");
-    expect(html).toContain("/releases/download/v1.0.0/KakaPick-1.0.0-arm64.dmg");
+    expect(html).toContain("https://github.com/DongZhouGu/KakaPick/releases/latest");
+    expect(html).not.toMatch(/href=["']\/releases\//);
   });
 
   it("does not load third-party scripts or expose ignored campaign paths", () => {

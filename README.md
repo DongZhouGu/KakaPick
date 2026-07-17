@@ -1,111 +1,96 @@
-# 咔咔选 KakaPick
+# KakaPick
 
 ![KakaPick mark](src/client/assets/kakapick-mark.svg)
 
-**拍得多，也能选得快。**
+**Shoot more. Cull faster.**
 
-[产品宣传页](https://DongZhouGu.github.io/KakaPick/) · [下载 macOS App](https://github.com/DongZhouGu/KakaPick/releases/latest) · [GitHub 源码](https://github.com/DongZhouGu/KakaPick)
+KakaPick is a local-first photo culling app for photographers. It groups bursts and similar shots for side-by-side comparison, keyboard rating, and safe export—without uploading your photos.
 
-咔咔选是一款面向摄影师和摄影爱好者的本地选片工具。它把连续拍摄和相似照片自动成组，支持并排比较、高清放大、键盘评分与安全导出。照片、缩略图、评分和导出始终留在本机。
+[Website](https://DongZhouGu.github.io/KakaPick/) · [Download for macOS](https://github.com/DongZhouGu/KakaPick/releases/latest) · [简体中文](README.zh-CN.md)
 
-> 当前状态：早期公开版本，优先支持 Apple Silicon Mac（macOS 13+）。欢迎试用、报告问题和贡献改进。
+> Early public release · Apple Silicon · macOS 13+ · MIT
 
-## 为什么做 KakaPick
+## Make the decisions, skip the busywork
 
-每次连拍按爽了，回家选片就开始后悔：同一个动作几十张、表情只差一点点，来回切图、放大、缩小，最后眼睛都看麻了。KakaPick 专门处理大量相似照片的机械整理，让摄影师把时间留给真正的判断。
+A burst can contain dozens of nearly identical frames. KakaPick handles the repetitive organization so you can focus on sharpness, expression, and timing. It does not claim to choose the “best” photo or replace your judgment.
 
-它不会替你决定哪张最有感觉，也不把自动检测包装成万能 AI；它只把重复工作先整理好，让你更快看清差异、更顺手完成交付。
+## From folder to final selects
 
-## 一次完整的选片工作流
+1. **Open a folder.** Same-directory RAW, JPEG, and XMP files with matching normalized names become one photo unit.
+2. **Let KakaPick organize.** Capture time, camera information, and image similarity help group bursts and related frames.
+3. **Compare clearly.** Review 1–5 photos side by side with synchronized zoom and pan, a filmstrip, and a full-group overview.
+4. **Cull continuously.** Keep, reject, or apply a 0–5 star rating from the keyboard; split, merge, and undo when a group needs adjustment.
+5. **Export safely.** Write Lightroom-compatible ratings or copy selected RAW, JPEG, and XMP files into a separate folder.
 
-1. **打开文件夹**：选择照片目录，RAW、JPEG 和 XMP 会按规范化同名关系组成一个照片单元。
-2. **自动成组**：根据拍摄时间、相机信息与画面特征整理连拍和相似画面。
-3. **并排看清**：在沉浸式工作台中同步放大、拖拽平移，比较清晰度、表情和瞬间。
-4. **连续完成**：使用 `X` 保留、`Z` 淘汰/恢复或 `1–5` 星评分，评分后自动前进。
-5. **安心交付**：将评分交给 Lightroom，或把入选的 RAW、JPEG 和 XMP 复制到精选文件夹。
+KakaPick suits event, portrait, wedding, travel, and other burst-heavy photography.
 
-适合活动、人像、婚礼、旅行和任何连拍量比较大的场景。
+## Highlights
 
-## 功能
+- **Local-first:** photos, thumbnails, ratings, and exports stay on your Mac; there is no upload, account, or cloud sync.
+- **Fast visual comparison:** adaptive 1–5-up layouts, synchronized detail inspection, and keyboard-first navigation.
+- **Useful, restrained assistance:** local image metrics can flag blur, overexposure, and underexposure without pretending to make aesthetic decisions.
+- **Lightroom-compatible workflow:** ratings can be written to compatible metadata without modifying the Lightroom catalog database.
+- **Safe source handling:** proprietary RAW bytes are not modified; export writes use preflight checks and transactional file operations.
+- **Fast resume:** saved sessions and cached analysis avoid repeated work when an album has not changed.
 
-- **连拍成组**：结合拍摄时间、相机信息与感知哈希整理相似照片。
-- **快速比较**：1–5 张自适应并排、同步放大、胶片栏和全组总览。
-- **高效评分**：键盘评分、保留、淘汰、自动前进、拆分、合并与撤销。
-- **本地画质提示**：用本机图像指标提示模糊、过曝和欠曝，不调用云端 AI。
-- **安全导出**：写入 Lightroom 兼容评分，或复制入选的 RAW、JPEG 和 XMP。
-- **快速恢复**：缓存缩略图与分析结果，重新打开未变化相册时跳过重复工作。
+## Install on macOS
 
-宣传页中也提供了一个不依赖云服务的产品概览：[dongzhougu.github.io/KakaPick](https://DongZhouGu.github.io/KakaPick/)。
+Download the current build from [GitHub Releases](https://github.com/DongZhouGu/KakaPick/releases/latest), open the DMG, and drag KakaPick into Applications.
 
-## 安装 Mac App
+Current public builds target Apple Silicon Macs running macOS 13 or newer. They use ad-hoc signing and are not notarized by Apple, so macOS may block the first launch. If you trust the download, right-click KakaPick in Finder and choose **Open**. Only install builds from a source you trust.
 
-发布构建会生成：
+## Quick start
 
-- `KakaPick.app`
-- `KakaPick-<version>-arm64.dmg`
+1. Choose a photo folder or reopen a recent album.
+2. Compare each group and rate or reject its frames.
+3. Export ratings as Lightroom-compatible metadata, or copy selected source files to a separate “selects” folder.
 
-打开 DMG 后将 KakaPick 拖入“应用程序”。当前本地构建使用 ad-hoc 签名，没有 Apple 公证；从互联网获取的构建可能需要在 Finder 中右键应用并选择“打开”。只安装你信任来源的构建。
+| Input | Action |
+| --- | --- |
+| `1`–`5` | Apply a star rating |
+| `X` | Keep |
+| `Z` | Reject or restore |
+| `[` / `]` | Previous / next group |
+| `S` | Split the current group |
+| `M` | Merge with the next group |
+| `⌘Z` | Undo |
+| `Space` | Temporarily zoom |
+| `Ctrl` + wheel | Synchronized zoom |
 
-公开构建可在 [GitHub Releases](https://github.com/DongZhouGu/KakaPick/releases) 获取；当前版本面向 Apple Silicon，首次打开时的 Gatekeeper 提示属于未公证构建的预期行为。
+Shortcuts and the number of photos shown at once can be adjusted in Settings.
 
-## 从源码运行
+## Formats and export
 
-需要 macOS 13+、Node.js 20.3+ 和 pnpm 11.7.0。
+Supported files include JPG/JPEG, ARW, CR2, CR3, NEF, RAF, RW2, ORF, and DNG. When only a RAW file is available, KakaPick attempts to use its embedded preview.
 
-先在 GitHub 页面克隆或下载本仓库，然后在仓库目录中运行：
+Metadata export writes Lightroom-compatible ratings to the appropriate metadata target; it does not edit the Lightroom catalog. Copy export places selected source files and their related files in a separate destination.
+
+## Privacy and safety
+
+- The local HTTP service binds only to IPv4 loopback and validates Host, Origin, and a per-process token.
+- Public API responses, the interface, and export reports do not reveal absolute photo paths.
+- The Electron renderer uses sandboxing and context isolation with Node integration disabled.
+- Session data is stored under `~/Library/Application Support/BurstPick/`; thumbnails are cached under `~/Library/Caches/BurstPick/`. These internal legacy names remain for data compatibility.
+
+Read the [architecture](docs/architecture.md) and [security policy](SECURITY.md) for the complete boundary. Report vulnerabilities through GitHub private vulnerability reporting, not a public exploit report.
+
+## Build and contribute
+
+Source builds require macOS 13+, Node.js 20.3+, and pnpm 11.7.0.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-开发服务只监听 `127.0.0.1`，启动后会在终端输出带一次性进程 token 的本地地址。
+Create a standalone app or DMG with `pnpm desktop:pack` or `pnpm desktop:dist`. Packaged builds include Electron, Node.js, Sharp, and ExifTool.
 
-构建独立桌面应用：
+Bug reports, focused fixes, tests, and documentation improvements are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md); the broader documentation index is in [docs/README.md](docs/README.md).
 
-```bash
-pnpm desktop:pack  # release/mac-arm64/KakaPick.app
-pnpm desktop:dist  # release/KakaPick-1.0.0-arm64.dmg
-```
+## Current limitations
 
-打包后的 App 内含 Electron、Node.js、Sharp 和 ExifTool，不依赖源码目录、pnpm 或系统 Node.js。
+KakaPick is pre-release software. Public builds currently support Apple Silicon and macOS 13+ only, and are ad-hoc signed rather than notarized. KakaPick does not provide cloud sync, collaboration, photo editing, RAW development, or automatic final aesthetic selection.
 
-## 使用
-
-1. 选择照片文件夹，或从最近相册继续。
-2. 在并排舞台中比较连拍，使用 `X` 保留、`Z` 淘汰/恢复或 `1`–`5` 评分。
-3. 用 `[` / `]` 切换组，`S` 拆分，`M` 与下一组合并，`⌘Z` 撤销。
-4. 完成后将评分写入 Lightroom 兼容元数据，或复制入选照片到相册旁的“精选”文件夹。
-
-按住 `Space` 可临时放大；点击、拖拽和 `Ctrl` + 滚轮可同步检查细节。快捷键和每屏照片数可在设置中调整。
-
-## 支持格式
-
-JPEG/JPG，以及 ARW、CR2、CR3、NEF、RAF、RW2、ORF、DNG。相同目录下规范化同名的 RAW、JPEG 和 XMP 会作为一个照片单元显示；仅有 RAW 时会尝试提取内嵌预览。
-
-## 隐私与安全
-
-- 不上传照片，不提供账号或云同步。
-- HTTP 服务仅绑定 IPv4 loopback，并校验 Host、Origin 和进程 token。
-- 不修改专有 RAW 字节；元数据和复制导出采用预检、临时文件、校验和原子发布。
-- 公开 API、界面和导出报告不返回照片的绝对路径。
-- 会话保存在 `~/Library/Application Support/BurstPick/`，缩略图位于 `~/Library/Caches/BurstPick/`。内部目录保留历史名称以兼容已有数据。
-
-Electron 渲染器启用 sandbox 与 context isolation，并关闭 Node integration。详细边界见[系统架构](docs/architecture.md)和[安全策略](SECURITY.md)。
-
-## 开发与测试
-
-```bash
-pnpm test
-pnpm typecheck
-pnpm lint
-pnpm build
-pnpm test:e2e
-pnpm test:metadata-smoke
-```
-
-完整项目文档见 [docs/README.md](docs/README.md)，贡献约定见 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-## 许可证
+## License
 
 [MIT](LICENSE) © 2026 KakaPick contributors

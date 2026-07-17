@@ -27,6 +27,25 @@ const containsForbiddenDocumentation = (content: string) =>
 
 describe("public repository hygiene", () => {
   it.each([
+    ["README.md", "README.zh-CN.md", "简体中文"],
+    ["README.zh-CN.md", "README.md", "English"],
+  ])("keeps %s product-first and linked to its translation", (path, translation, language) => {
+    const content = readFileSync(join(repositoryRoot, path), "utf8");
+
+    expect(content).toContain(`](${translation})`);
+    expect(content).toContain(language);
+    expect(content).toContain("src/client/assets/kakapick-mark.svg");
+    expect(content).toContain("https://DongZhouGu.github.io/KakaPick/");
+    expect(content).toContain("https://github.com/DongZhouGu/KakaPick/releases/latest");
+    expect(content).toMatch(/local-first|本地优先/i);
+    expect(content).toMatch(/without uploading|不上传/i);
+    expect(content).toMatch(/Lightroom-compatible|Lightroom 兼容/i);
+    expect(content).toContain("CONTRIBUTING.md");
+    expect(content).toContain("SECURITY.md");
+    expect(content).toContain("LICENSE");
+  });
+
+  it.each([
     ".superpowers/sdd/task.md",
     "docs/superpowers/plans/task.md",
     ".agents/notes.md",
