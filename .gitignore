@@ -1,0 +1,28 @@
+.worktrees/
+.pnpm-store/
+node_modules/
+dist/
+release/
+coverage/
+playwright-report/
+test-results/
+.DS_Store
+.burstpick/
+**/specs/plans/
+*.log
+
+# Local environments and editor state
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+**/.venv/
+**/.venv-*/
+**/__pycache__/
+
+# Local launch collateral is intentionally not part of the public source tree.
+# It may contain generated screenshots, narration, music, or campaign drafts.
+/marketing/
+/videos/
+/scripts/create-xhs-cards.mjs
