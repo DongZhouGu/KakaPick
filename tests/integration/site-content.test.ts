@@ -19,5 +19,6 @@ describe("GitHub Pages site", () => {
   it("uses the Pages deployment workflow", () => {
     expect(workflow).toContain("actions/deploy-pages");
     expect(workflow).toContain("path: site");
+    expect(workflow).toContain("enablement: true");
   });
 });
