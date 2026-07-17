@@ -9,6 +9,8 @@ test-results/
 .DS_Store
 .burstpick/
 .superpowers/
+superpowers/
+**/specs/plans/
 *.log
 
 # Local environments and editor state

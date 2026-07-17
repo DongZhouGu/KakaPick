@@ -29,7 +29,6 @@ src/client/   React 界面、状态和交互
 src/electron/ macOS 窗口、原生选择器和进程生命周期
 tests/        端到端与集成测试
 docs/         当前关键文档
-docs/superpowers/  历史设计规格和实施计划
 ```
 
 新模块应保持单一职责。共享层不得引入浏览器、React 或 Node 文件系统依赖；客户端不得直接接触真实文件路径；文件操作必须通过服务端验证边界。
@@ -75,4 +74,4 @@ pnpm desktop:dist
 - 名称、文案、Logo 或颜色变化：更新 `docs/brand.md`。
 - 组件、Token 或交互规范变化：更新 `docs/design-system.md`。
 - 命令和发布验证变化：更新 `docs/development.md` 与 `docs/verification.md`。
-- 新设计规格和实施计划保存在 `docs/superpowers/`，并加入 `docs/history.md`。
+- 面向用户或贡献者的重要版本变化加入 `docs/history.md`。

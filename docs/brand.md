@@ -84,5 +84,3 @@
 ## 命名迁移边界
 
 用户可见位置使用“咔咔选”或“KakaPick”。以下内部标识暂时保留历史名称以维持兼容：npm 包名、仓库目录、API token header、浏览器存储 key、bundle identifier和应用数据目录。桌面制品使用 `KakaPick.app`；未来迁移内部标识必须提供已有会话和偏好的兼容方案。
-
-更完整的品牌形成过程见[品牌升级设计记录](superpowers/specs/2026-07-12-kakapick-brand-refresh-design.md)。
