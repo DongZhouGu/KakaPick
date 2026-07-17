@@ -6,9 +6,13 @@ describe("GitHub Pages site", () => {
   const workflow = readFileSync(".github/workflows/pages.yml", "utf8");
 
   it("contains the public product story and fixed release links", () => {
+    const releaseUrl = "https://github.com/DongZhouGu/KakaPick/releases/latest";
+    const downloadActions = [...html.matchAll(/<a\b[^>]*class=["'][^"']*button-primary[^"']*["'][^>]*href=["']([^"']+)["'][^>]*>/gi)];
+
     expect(html).toContain("拍得多，也能选得快");
     expect(html).toContain("https://github.com/DongZhouGu/KakaPick");
-    expect(html).toContain("https://github.com/DongZhouGu/KakaPick/releases/latest");
+    expect(downloadActions).toHaveLength(2);
+    expect(downloadActions.map((action) => action[1])).toEqual([releaseUrl, releaseUrl]);
     expect(html).not.toMatch(/href=["']\/releases\//);
   });
 
