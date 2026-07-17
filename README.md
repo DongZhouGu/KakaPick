@@ -4,9 +4,27 @@
 
 **拍得多，也能选得快。**
 
+[产品宣传页](https://DongZhouGu.github.io/KakaPick/) · [下载 macOS App](https://github.com/DongZhouGu/KakaPick/releases/latest) · [GitHub 源码](https://github.com/DongZhouGu/KakaPick)
+
 咔咔选是一款面向摄影师和摄影爱好者的本地选片工具。它把连续拍摄和相似照片自动成组，支持并排比较、高清放大、键盘评分与安全导出。照片、缩略图、评分和导出始终留在本机。
 
 > 当前状态：早期公开版本，优先支持 Apple Silicon Mac（macOS 13+）。欢迎试用、报告问题和贡献改进。
+
+## 为什么做 KakaPick
+
+每次连拍按爽了，回家选片就开始后悔：同一个动作几十张、表情只差一点点，来回切图、放大、缩小，最后眼睛都看麻了。KakaPick 专门处理大量相似照片的机械整理，让摄影师把时间留给真正的判断。
+
+它不会替你决定哪张最有感觉，也不把自动检测包装成万能 AI；它只把重复工作先整理好，让你更快看清差异、更顺手完成交付。
+
+## 一次完整的选片工作流
+
+1. **打开文件夹**：选择照片目录，RAW、JPEG 和 XMP 会按规范化同名关系组成一个照片单元。
+2. **自动成组**：根据拍摄时间、相机信息与画面特征整理连拍和相似画面。
+3. **并排看清**：在沉浸式工作台中同步放大、拖拽平移，比较清晰度、表情和瞬间。
+4. **连续完成**：使用 `X` 保留、`Z` 淘汰/恢复或 `1–5` 星评分，评分后自动前进。
+5. **安心交付**：将评分交给 Lightroom，或把入选的 RAW、JPEG 和 XMP 复制到精选文件夹。
+
+适合活动、人像、婚礼、旅行和任何连拍量比较大的场景。
 
 ## 功能
 
@@ -17,6 +35,8 @@
 - **安全导出**：写入 Lightroom 兼容评分，或复制入选的 RAW、JPEG 和 XMP。
 - **快速恢复**：缓存缩略图与分析结果，重新打开未变化相册时跳过重复工作。
 
+宣传页中也提供了一个不依赖云服务的产品概览：[dongzhougu.github.io/KakaPick](https://DongZhouGu.github.io/KakaPick/)。
+
 ## 安装 Mac App
 
 发布构建会生成：
@@ -25,6 +45,8 @@
 - `KakaPick-<version>-arm64.dmg`
 
 打开 DMG 后将 KakaPick 拖入“应用程序”。当前本地构建使用 ad-hoc 签名，没有 Apple 公证；从互联网获取的构建可能需要在 Finder 中右键应用并选择“打开”。只安装你信任来源的构建。
+
+公开构建可在 [GitHub Releases](https://github.com/DongZhouGu/KakaPick/releases) 获取；当前版本面向 Apple Silicon，首次打开时的 Gatekeeper 提示属于未公证构建的预期行为。
 
 ## 从源码运行
 
