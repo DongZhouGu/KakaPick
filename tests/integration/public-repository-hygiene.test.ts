@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -27,8 +27,8 @@ const containsForbiddenDocumentation = (content: string) =>
 
 describe("public repository hygiene", () => {
   it.each([
-    ["README.md", "README.zh-CN.md", "简体中文"],
-    ["README.zh-CN.md", "README.md", "English"],
+    ["README.md", "README.en.md", "English"],
+    ["README.en.md", "README.md", "简体中文"],
   ])("keeps %s product-first and linked to its translation", (path, translation, language) => {
     const content = readFileSync(join(repositoryRoot, path), "utf8");
 
@@ -43,6 +43,19 @@ describe("public repository hygiene", () => {
     expect(content).toContain("CONTRIBUTING.md");
     expect(content).toContain("SECURITY.md");
     expect(content).toContain("LICENSE");
+    expect(content).toContain("docs/assets/kakapick-workspace.png");
+    expect(content).toContain("docs/assets/kakapick-workflow.png");
+  });
+
+  it("keeps Chinese as the default README and stores both product visuals", () => {
+    const defaultReadme = readFileSync(join(repositoryRoot, "README.md"), "utf8");
+
+    expect(defaultReadme).toContain("拍得多，也能选得快");
+    expect(defaultReadme).not.toContain("**Shoot more. Cull faster.**");
+    expect(existsSync(join(repositoryRoot, "README.en.md"))).toBe(true);
+    expect(existsSync(join(repositoryRoot, "README.zh-CN.md"))).toBe(false);
+    expect(existsSync(join(repositoryRoot, "docs/assets/kakapick-workspace.png"))).toBe(true);
+    expect(existsSync(join(repositoryRoot, "docs/assets/kakapick-workflow.png"))).toBe(true);
   });
 
   it.each([
@@ -62,7 +75,7 @@ describe("public repository hygiene", () => {
   it("selects every tracked Markdown file as public documentation", () => {
     const fixturePaths = [
       "README.md",
-      "README.zh-CN.md",
+      "README.en.md",
       "CONTRIBUTING.md",
       "site/content/guide.md",
       "src/index.ts",
@@ -101,7 +114,8 @@ describe("public repository hygiene", () => {
   });
 
   it("does not mention private agent or process names in public documentation", () => {
-    const publicDocumentation = selectPublicDocumentation(trackedPaths);
+    const publicDocumentation = selectPublicDocumentation(trackedPaths)
+      .filter((path) => existsSync(join(repositoryRoot, path)));
     const references = publicDocumentation.filter((path) =>
       containsForbiddenDocumentation(readFileSync(join(repositoryRoot, path), "utf8")),
     );
