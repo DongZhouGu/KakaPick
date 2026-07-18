@@ -45,6 +45,18 @@ Current public builds target Apple Silicon Macs running macOS 13 or newer. They 
 2. Compare each group and rate or reject its frames.
 3. Export ratings as Lightroom-compatible metadata, or copy selected source files to a separate “selects” folder.
 
+## After culling
+
+### Continue in Lightroom
+
+If the photos are already in Lightroom, choose **Export rating metadata** to bring KakaPick's 0–5 star results back into your existing workflow. Ratings for proprietary RAW files are stored in XMP sidecars, while JPEG and DNG use compatible metadata. KakaPick does not modify the Lightroom catalog database.
+
+When the export finishes, return to Lightroom, select the photographs, and use the version-appropriate metadata command—usually **Read Metadata from Files** or **Read Metadata**. You can then filter by star rating and continue developing, color grading, and delivering the selected photographs.
+
+### Copy to a new selects folder
+
+If Lightroom is not part of the next step, choose **Copy selected photos** and select a destination. KakaPick copies the selected RAW, JPEG, and associated XMP files together into a new folder for delivery, backup, or another editing application. Copy export does not move or delete the originals.
+
 | Input | Action |
 | --- | --- |
 | `1`–`5` | Apply a star rating |
