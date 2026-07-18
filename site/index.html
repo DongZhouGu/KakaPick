@@ -4,10 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0b0c0e">
-    <meta name="description" content="咔咔选 KakaPick：连拍自动成组，好片更快看清。面向 macOS 的本地 RAW+JPEG 选片工具。">
-    <title>咔咔选 KakaPick · 拍得多，也能选得快</title>
+    <meta name="description" content="咔咔选 KakaPick 是面向 macOS 摄影师的本地 RAW+JPEG 选片软件：自动整理连拍、并排比较、星级评分，并可接力 Lightroom 或复制精选照片，全程不上传。">
+    <meta name="keywords" content="咔咔选,KakaPick,选片软件,摄影选片,连拍选片,RAW选片,JPEG选片,Lightroom评分,照片筛选,macOS摄影软件,photo culling">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="application-name" content="咔咔选 KakaPick">
+    <link rel="canonical" href="https://DongZhouGu.github.io/KakaPick/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="咔咔选 KakaPick">
+    <meta property="og:title" content="咔咔选 KakaPick · 拍得多，也能选得快">
+    <meta property="og:description" content="本地 RAW+JPEG 连拍选片工具。并排看清、快速评分，结果可接力 Lightroom 或复制到精选文件夹。">
+    <meta property="og:url" content="https://DongZhouGu.github.io/KakaPick/">
+    <meta property="og:image" content="https://DongZhouGu.github.io/KakaPick/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="咔咔选 KakaPick 宣传网站首页预览">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="咔咔选 KakaPick · 拍得多，也能选得快">
+    <meta name="twitter:description" content="面向 macOS 的本地 RAW+JPEG 连拍选片工具，可接力 Lightroom 或复制精选照片。">
+    <meta name="twitter:image" content="https://DongZhouGu.github.io/KakaPick/social-preview.png">
+    <title>咔咔选 KakaPick · macOS RAW+JPEG 连拍选片软件</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='13' y='7' width='27' height='27' rx='7' fill='none' stroke='%23FF7A1A' stroke-width='4' opacity='.58'/%3E%3Crect x='7' y='13' width='27' height='27' rx='7' fill='none' stroke='%23FF7A1A' stroke-width='4'/%3E%3Cpath d='m15 27 6 6 13-15' fill='none' stroke='%23FF7A1A' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "咔咔选 KakaPick",
+        "alternateName": "KakaPick",
+        "description": "面向 macOS 摄影师的本地 RAW+JPEG 连拍选片工具，支持 Lightroom 兼容评分与精选照片复制导出。",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "macOS 13 or later",
+        "softwareVersion": "1.0.0",
+        "url": "https://DongZhouGu.github.io/KakaPick/",
+        "downloadUrl": "https://github.com/DongZhouGu/KakaPick/releases/latest",
+        "image": "https://DongZhouGu.github.io/KakaPick/social-preview.png",
+        "license": "https://github.com/DongZhouGu/KakaPick/blob/main/LICENSE",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
   </head>
   <body>
     <header class="topbar shell">
@@ -21,6 +57,7 @@
       </a>
       <nav class="nav" aria-label="主导航">
         <a href="#workflow">怎么工作</a>
+        <a href="#after-cull">选完之后</a>
         <a href="#privacy">本地安全</a>
         <a href="https://github.com/DongZhouGu/KakaPick">GitHub</a>
       </nav>
@@ -67,6 +104,14 @@
           <article class="step"><span class="step-no">02</span><div class="step-icon">◫</div><h3>自动成组</h3><p>结合拍摄时间、相机信息与画面特征，把连拍和相似画面整理到一起。</p></article>
           <article class="step"><span class="step-no">03</span><div class="step-icon">⌕</div><h3>并排看清</h3><p>同步放大、拖拽平移。清晰度、表情、那个刚好的瞬间，一眼看清。</p></article>
           <article class="step"><span class="step-no">04</span><div class="step-icon">✓</div><h3>安心交付</h3><p>键盘连续评分，结果交给 Lightroom，或复制入选照片到精选文件夹。</p></article>
+        </div>
+      </section>
+
+      <section class="section shell after-cull" id="after-cull">
+        <div class="section-heading centered"><p class="eyebrow">选完片之后</p><h2>选片结束，工作流继续。</h2><p>KakaPick 不会把结果锁在应用里。把星级交给 Lightroom 继续调色，或把入选照片整理成一个新的精选文件夹。</p></div>
+        <div class="handoff-grid">
+          <article class="handoff-card handoff-lightroom"><span class="handoff-tag">Lightroom</span><div class="handoff-icon">Lr</div><h3>继续在 Lightroom 调色</h3><p>导出 Lightroom 兼容的星级评分，再让 Lightroom 读取元数据，即可按星级筛选入选照片，接着显影、调色和交付。</p><small>专有 RAW 的评分写入 XMP 边车文件；JPEG 与 DNG 使用兼容元数据，不修改 Lightroom 目录。</small></article>
+          <article class="handoff-card handoff-folder"><span class="handoff-tag">精选文件夹</span><div class="handoff-icon">↗</div><h3>复制成新的精选文件夹</h3><p>不使用 Lightroom 也没关系。把入选的源照片及关联文件复制到单独目录，直接用于交付、备份或其他后期软件。</p><small>RAW、JPEG 和关联 XMP 会一起复制；原始文件不会被移动或删除。</small></article>
         </div>
       </section>
 

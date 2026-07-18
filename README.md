@@ -8,6 +8,10 @@
 
 [产品主页](https://DongZhouGu.github.io/KakaPick/) · [下载 macOS 版](https://github.com/DongZhouGu/KakaPick/releases/latest) · [English](README.en.md)
 
+<a href="https://DongZhouGu.github.io/KakaPick/"><img src="site/social-preview.png" alt="咔咔选 KakaPick 宣传网站预览" width="640"></a>
+
+点击预览图访问[咔咔选宣传网站](https://DongZhouGu.github.io/KakaPick/)，了解完整工作流并下载 macOS 版。
+
 > 早期公开版本 · Apple Silicon · macOS 13+ · MIT
 
 ![咔咔选并排选片工作台](docs/assets/kakapick-workspace.png)
@@ -48,6 +52,18 @@
 1. 选择照片文件夹，或重新打开最近相册。
 2. 比较每组照片，完成评分或淘汰。
 3. 将评分导出为 Lightroom 兼容元数据，或把入选源文件复制到单独的“精选”文件夹。
+
+## 选完片之后
+
+### 继续在 Lightroom 调色
+
+如果照片已经在 Lightroom 中，选择**导出评分元数据**即可把咔咔选里的 0–5 星结果交回原有工作流。专有 RAW 的评分保存在 XMP 边车文件中，JPEG 与 DNG 使用兼容元数据；咔咔选不会修改 Lightroom 目录数据库。
+
+导出完成后，回到 Lightroom 选中这些照片，通过对应版本的元数据命令**读取元数据**或“从文件读取元数据”，然后按星级筛选。入选照片会带着你在咔咔选中设置的评分，可以继续显影、调色和交付。
+
+### 复制成新的精选文件夹
+
+如果不需要回到 Lightroom，选择**复制入选照片**并指定目标位置。咔咔选会把入选的 RAW、JPEG 和关联 XMP 一起复制到新的精选文件夹，方便直接交付、备份或交给其他后期软件。复制导出不会移动或删除原始文件。
 
 | 按键 | 操作 |
 | --- | --- |

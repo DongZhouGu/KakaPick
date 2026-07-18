@@ -8,6 +8,10 @@ KakaPick is a local-first photo culling app for photographers. It groups bursts 
 
 [Website](https://DongZhouGu.github.io/KakaPick/) · [Download for macOS](https://github.com/DongZhouGu/KakaPick/releases/latest) · [简体中文](README.md)
 
+<a href="https://DongZhouGu.github.io/KakaPick/"><img src="site/social-preview.png" alt="KakaPick promotional website preview" width="640"></a>
+
+Click the preview to visit the [KakaPick product website](https://DongZhouGu.github.io/KakaPick/) for the complete workflow and macOS download.
+
 > Early public release · Apple Silicon · macOS 13+ · MIT
 
 ![KakaPick side-by-side culling workspace](docs/assets/kakapick-workspace.png)
@@ -48,6 +52,18 @@ Current public builds target Apple Silicon Macs running macOS 13 or newer. They 
 1. Choose a photo folder or reopen a recent album.
 2. Compare each group and rate or reject its frames.
 3. Export ratings as Lightroom-compatible metadata, or copy selected source files to a separate “selects” folder.
+
+## After culling
+
+### Continue in Lightroom
+
+If the photos are already in Lightroom, choose **Export rating metadata** to bring KakaPick's 0–5 star results back into your existing workflow. Ratings for proprietary RAW files are stored in XMP sidecars, while JPEG and DNG use compatible metadata. KakaPick does not modify the Lightroom catalog database.
+
+When the export finishes, return to Lightroom, select the photographs, and use the version-appropriate metadata command—usually **Read Metadata from Files** or **Read Metadata**. You can then filter by star rating and continue developing, color grading, and delivering the selected photographs.
+
+### Copy to a new selects folder
+
+If Lightroom is not part of the next step, choose **Copy selected photos** and select a destination. KakaPick copies the selected RAW, JPEG, and associated XMP files together into a new folder for delivery, backup, or another editing application. Copy export does not move or delete the originals.
 
 | Input | Action |
 | --- | --- |
