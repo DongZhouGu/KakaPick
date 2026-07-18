@@ -8,6 +8,10 @@ KakaPick is a local-first photo culling app for photographers. It groups bursts 
 
 [Website](https://DongZhouGu.github.io/KakaPick/) · [Download for macOS](https://github.com/DongZhouGu/KakaPick/releases/latest) · [简体中文](README.zh-CN.md)
 
+<a href="https://DongZhouGu.github.io/KakaPick/"><img src="site/social-preview.png" alt="KakaPick promotional website preview" width="640"></a>
+
+Click the preview to visit the [KakaPick product website](https://DongZhouGu.github.io/KakaPick/) for the complete workflow and macOS download.
+
 > Early public release · Apple Silicon · macOS 13+ · MIT
 
 ## Make the decisions, skip the busywork

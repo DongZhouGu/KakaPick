@@ -8,6 +8,10 @@
 
 [产品主页](https://DongZhouGu.github.io/KakaPick/) · [下载 macOS 版](https://github.com/DongZhouGu/KakaPick/releases/latest) · [English](README.md)
 
+<a href="https://DongZhouGu.github.io/KakaPick/"><img src="site/social-preview.png" alt="咔咔选 KakaPick 宣传网站预览" width="640"></a>
+
+点击预览图访问[咔咔选宣传网站](https://DongZhouGu.github.io/KakaPick/)，了解完整工作流并下载 macOS 版。
+
 > 早期公开版本 · Apple Silicon · macOS 13+ · MIT
 
 ## 把时间留给判断，而不是整理

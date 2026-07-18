@@ -44,6 +44,26 @@ describe("GitHub Pages site", () => {
     expect(englishReadme).toContain("does not move or delete the originals");
   });
 
+  it("publishes search metadata and a clickable website preview", () => {
+    const websiteUrl = "https://DongZhouGu.github.io/KakaPick/";
+    const previewUrl = `${websiteUrl}social-preview.png`;
+
+    expect(html).toContain(`<link rel="canonical" href="${websiteUrl}">`);
+    expect(html).toContain('<meta name="keywords"');
+    expect(html).toContain('<meta property="og:type" content="website">');
+    expect(html).toContain(`<meta property="og:url" content="${websiteUrl}">`);
+    expect(html).toContain(`<meta property="og:image" content="${previewUrl}">`);
+    expect(html).toContain('<meta name="twitter:card" content="summary_large_image">');
+    expect(html).toContain('type="application/ld+json"');
+    expect(html).toContain('"@type": "SoftwareApplication"');
+
+    for (const readme of [chineseReadme, englishReadme]) {
+      expect(readme).toContain(`<a href="${websiteUrl}">`);
+      expect(readme).toContain('src="site/social-preview.png"');
+      expect(readme).toContain('width="640"');
+    }
+  });
+
   it("uses the Pages deployment workflow", () => {
     expect(workflow).toContain("actions/deploy-pages");
     expect(workflow).toContain("path: site");
