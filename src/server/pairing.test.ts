@@ -89,7 +89,18 @@ describe("pairSourceFiles", () => {
       { path: "/shoot/b/x.jpg", relativePath: "b/x.jpg", kind: "jpeg", size: 1, modifiedAtMs: 1 },
     ]);
     expect(result.photos).toHaveLength(2);
-    expect(result.warnings.map((item) => item.code)).toEqual(["UNPAIRED_RAW", "UNPAIRED_JPEG"]);
+    expect(result.warnings.map((item) => item.code)).toEqual(["UNPAIRED_RAW"]);
+  });
+
+  it("imports JPEG-only folders without unpaired warnings", () => {
+    const result = pairSourceFiles("/shoot", [
+      { path: "/shoot/a/DSC_1.jpeg", relativePath: "a/DSC_1.jpeg", kind: "jpeg", size: 4, modifiedAtMs: 1 },
+      { path: "/shoot/a/DSC_2.jpg", relativePath: "a/DSC_2.jpg", kind: "jpeg", size: 5, modifiedAtMs: 2 },
+    ]);
+
+    expect(result.photos).toHaveLength(2);
+    expect(result.photos.every((photo) => photo.jpeg !== undefined && photo.raw === undefined)).toBe(true);
+    expect(result.warnings).toEqual([]);
   });
 
   it("normalizes directory and stem keys while preserving the preferred RAW display stem", () => {

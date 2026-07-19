@@ -202,8 +202,6 @@ export function pairSourceFiles(
 
     if (raw !== undefined && jpeg === undefined) {
       warnings.push({ code: "UNPAIRED_RAW", photoId: id, relativePaths: [raw.relativePath] });
-    } else if (jpeg !== undefined && raw === undefined) {
-      warnings.push({ code: "UNPAIRED_JPEG", photoId: id, relativePaths: [jpeg.relativePath] });
     }
   }
 
