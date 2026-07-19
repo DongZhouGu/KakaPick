@@ -318,8 +318,15 @@ function sameVisualSources(left: readonly PhotoUnit[], right: readonly PhotoUnit
 function refreshSourceFiles(prior: PhotoUnit, current: PhotoUnit): PhotoUnit {
   const { raw: _raw, jpeg: _jpeg, xmp: _xmp, ...preserved } = prior;
   void _raw; void _jpeg; void _xmp;
+  const fileNameCaptureTime = preserved.captureTimeSource === "file-mtime"
+    ? filenameTimestampMs(primaryFile(current))
+    : undefined;
   return PhotoUnitSchema.parse({
     ...preserved,
+    ...(fileNameCaptureTime === undefined ? {} : {
+      capturedAtMs: fileNameCaptureTime,
+      captureTimeSource: "filename",
+    }),
     ...(current.raw === undefined ? {} : { raw: current.raw }),
     ...(current.jpeg === undefined ? {} : { jpeg: current.jpeg }),
     ...(current.xmp === undefined ? {} : { xmp: current.xmp }),

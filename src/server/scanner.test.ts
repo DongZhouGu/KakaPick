@@ -526,6 +526,45 @@ describe("scanAlbum", () => {
     expect(store.saved()).toEqual(expect.objectContaining({ updatedAt: resumed.updatedAt }));
   });
 
+  it("upgrades cached file-mtime capture times from leading JPEG filename timestamps", async () => {
+    const root = await temporaryDirectory("burstpick-filename-time-resume-");
+    await fixtureFile(root, "1784446491000_1784447367895_24.jpeg");
+    const firstStore = memoryStore();
+    const first = await scanAlbum({
+      images: imageAdapter(),
+      metadata: metadataAdapter(async () => ({})),
+      root,
+      sessionStore: firstStore,
+    });
+    const { warnings: _warnings, ...firstSession } = first;
+    void _warnings;
+    const prior = AlbumSessionSchema.parse({
+      ...firstSession,
+      photos: first.photos.map((photo) => ({
+        ...photo,
+        capturedAtMs: photo.jpeg!.modifiedAtMs,
+        captureTimeSource: "file-mtime",
+      })),
+    });
+    const read = vi.fn(async () => { throw new Error("metadata must be skipped"); });
+
+    const resumed = await scanAlbum({
+      images: imageAdapter(async () => { throw new Error("hash must be skipped"); }),
+      metadata: metadataAdapter(read),
+      root,
+      sessionStore: memoryStore(prior),
+    });
+
+    expect(read).not.toHaveBeenCalled();
+    expect(resumed.photos[0]).toMatchObject({
+      capturedAtMs: 1_784_446_491_000,
+      captureTimeSource: "filename",
+    });
+    expect(resumed.warnings).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: "CAPTURE_TIME_FALLBACK" }),
+    ]));
+  });
+
   it("reuses visual analysis when only an XMP sidecar is added", async () => {
     const root = await temporaryDirectory("burstpick-xmp-resume-");
     await fixtureFile(root, "one.arw");
