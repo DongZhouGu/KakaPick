@@ -19,6 +19,9 @@ const METADATA_CONCURRENCY = 8;
 const IMAGE_CONCURRENCY = 6;
 const HASH_PATTERN = /^[0-9a-f]{16}$/;
 const IGNORED_DIRECTORIES = new Set([".burstpick", "node_modules"]);
+const FILENAME_TIMESTAMP_PATTERN = /^(\d{13})(?:_|$)/;
+const MIN_FILENAME_TIMESTAMP_MS = Date.UTC(2000, 0, 1);
+const MAX_FILENAME_TIMESTAMP_MS = Date.UTC(2100, 0, 1);
 
 export type ScanProgressPhase = "inventory" | "metadata" | "hashing" | "grouping";
 
@@ -204,20 +207,32 @@ function validTimestamp(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : undefined;
 }
 
+function filenameTimestampMs(source: SourceFile): number | undefined {
+  const match = FILENAME_TIMESTAMP_PATTERN.exec(basename(source.relativePath).replace(/\.[^.]+$/u, ""));
+  if (match === null) return undefined;
+
+  const timestamp = Number(match[1]);
+  return Number.isSafeInteger(timestamp) && timestamp >= MIN_FILENAME_TIMESTAMP_MS && timestamp < MAX_FILENAME_TIMESTAMP_MS
+    ? timestamp
+    : undefined;
+}
+
 function validSequence(value: unknown): number | undefined {
   return typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : undefined;
 }
 
 function enrichPhoto(photo: PhotoUnit, metadata: MetadataReadResult): PhotoUnit {
   const source = primaryFile(photo);
-  const capturedAtMs = validTimestamp(metadata.capturedAtMs);
+  const exifCaptureTime = validTimestamp(metadata.capturedAtMs);
+  const fileNameCaptureTime = exifCaptureTime === undefined ? filenameTimestampMs(source) : undefined;
+  const capturedAtMs = exifCaptureTime ?? fileNameCaptureTime ?? source.modifiedAtMs;
   const cameraId = validString(metadata.cameraId);
   const burstId = validString(metadata.burstId);
   const sequenceNumber = validSequence(metadata.sequenceNumber);
   return PhotoUnitSchema.parse({
     ...photo,
-    capturedAtMs: capturedAtMs ?? source.modifiedAtMs,
-    captureTimeSource: capturedAtMs === undefined ? "file-mtime" : "exif",
+    capturedAtMs,
+    captureTimeSource: exifCaptureTime !== undefined ? "exif" : fileNameCaptureTime !== undefined ? "filename" : "file-mtime",
     ...(cameraId === undefined ? {} : { cameraId }),
     ...(burstId === undefined ? {} : { burstId }),
     ...(sequenceNumber === undefined ? {} : { sequenceNumber }),

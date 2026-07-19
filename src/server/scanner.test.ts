@@ -367,6 +367,27 @@ describe("scanAlbum", () => {
     ).rejects.toThrow();
   });
 
+  it("uses a leading filename timestamp when JPEG metadata has no capture time", async () => {
+    const root = await temporaryDirectory("burstpick-filename-time-");
+    await fixtureFile(root, "1784446491000_1784447367895_24.jpeg");
+
+    const result = await scanAlbum({
+      images: imageAdapter(),
+      metadata: metadataAdapter(async () => ({})),
+      root,
+      sessionStore: memoryStore(),
+    });
+
+    expect(result.photos).toHaveLength(1);
+    expect(result.photos[0]).toMatchObject({
+      capturedAtMs: 1_784_446_491_000,
+      captureTimeSource: "filename",
+    });
+    expect(result.warnings).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: "CAPTURE_TIME_FALLBACK" }),
+    ]));
+  });
+
   it("extracts RAW previews only beneath the supplied application cache root", async () => {
     const root = await temporaryDirectory("burstpick-raw-");
     const cacheRoot = await temporaryDirectory("burstpick-cache-");

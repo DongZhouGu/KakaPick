@@ -38,7 +38,7 @@ const PhotoUnitBaseSchema = z
     stem: z.string().min(1),
     xmp: XmpSourceFileSchema.optional(),
     capturedAtMs: z.number().finite().nonnegative(),
-    captureTimeSource: z.enum(["exif", "file-mtime"]),
+    captureTimeSource: z.enum(["exif", "filename", "file-mtime"]),
     cameraId: z.string().min(1).optional(),
     burstId: z.string().min(1).optional(),
     sequenceNumber: z.number().int().nonnegative().optional(),
